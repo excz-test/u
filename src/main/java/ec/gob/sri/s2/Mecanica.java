@@ -24,7 +24,7 @@ public class Mecanica {
 
     public static void main(String[] args) {
         Utilidades util = new Utilidades();
-        Trabajo trabajo = new ReparacionesMecanicas(util.generarNumero(), 0, "Reparación 1", 0, "ABIERTO", 0);
+        Trabajo trabajo = new ReparacionesMecanicas(0, "Reparación 1", 0, "ABIERTO", 0,util.generarNumero());
         /*System.out.println(trabajo.getIdentificador());
         System.out.println(trabajo.getDescripcion());
         System.out.println(trabajo.getHoras());
@@ -32,7 +32,7 @@ public class Mecanica {
         System.out.println(trabajo.getCosto());*/
         util.imprimirEnPantalla(trabajo.getIdentificador(), PRINTLN);
         util.imprimirEnPantalla("--------------", PRINTLN);
-        ReparacionesMecanicas trabajo1=new ReparacionesMecanicas(50, 1, "Reparaación 2", 20,"CERRADO", 100);
+        ReparacionesMecanicas trabajo1=new ReparacionesMecanicas(1, "Reparaación 2", 20,"CERRADO", 100,50);
         util.imprimirEnPantalla(trabajo1.getIdentificador(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.getDescripcion(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.getHoras(), PRINTLN);
@@ -113,7 +113,7 @@ public class Mecanica {
             super(identificador, descripcion, horas, estado, costo);
         }
 
-        public Reparaciones(double precioMaterial, int identificador, String descripcion, int horas, String estado, double costo) {
+        public Reparaciones(int identificador, String descripcion, int horas, String estado, double costo,double precioMaterial) {
             super(identificador, descripcion, horas, estado, costo);
             this.precioMaterial = precioMaterial;
         }
@@ -133,19 +133,18 @@ public class Mecanica {
     }
     static class ReparacionesMecanicas extends Reparaciones {
 
-        public ReparacionesMecanicas(double precioMaterial, int identificador, String descripcion, int horas, String estado, double costo) {
-            super(precioMaterial, identificador, descripcion, horas, estado, costo);
+        public ReparacionesMecanicas(int identificador, String descripcion, int horas, String estado, double costo, double precioMaterial) {
+            super(identificador, descripcion, horas, estado, costo, precioMaterial);
         }
 
-        
         public double calcularPrecioTotalA() {
             return calcularPrecioTotal() + (getPrecioMaterial() / 3);
         }
     }
     static class ReparacionesChapasPintura extends Reparaciones {
 
-        public ReparacionesChapasPintura(double precioMaterial, int identificador, String descripcion, int horas, String estado, double costo) {
-            super(precioMaterial, identificador, descripcion, horas, estado, costo);
+        public ReparacionesChapasPintura(int identificador, String descripcion, int horas, String estado, double costo, double precioMaterial) {
+            super(identificador, descripcion, horas, estado, costo, precioMaterial);
         }
 
         public double calcularPrecioTotalB() {
@@ -154,10 +153,9 @@ public class Mecanica {
     }
     static class Revision extends Reparaciones {
 
-        public Revision(double precioMaterial, int identificador, String descripcion, int horas, String estado, double costo) {
-            super(precioMaterial, identificador, descripcion, horas, estado, costo);
+        public Revision(int identificador, String descripcion, int horas, String estado, double costo, double precioMaterial) {
+            super(identificador, descripcion, horas, estado, costo, precioMaterial);
         }
-
         public double calcularPrecioTotalC() {
             return PRECIO_FIJO + PRECIO_FIJO_REVISION;
         }
