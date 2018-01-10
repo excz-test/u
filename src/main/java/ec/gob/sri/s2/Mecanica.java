@@ -35,4 +35,7 @@ public class Mecanica {
                 System.out.println("No se pudo identificar el tipo de impresión solicitada");
         }
     }
+    static void generarNumero(){
+        
+    }
 }
