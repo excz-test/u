@@ -37,7 +37,7 @@ public class Mecanica {
         util.imprimirEnPantalla(trabajo1.getDescripcion(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.getHoras(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.getEstado(), PRINTLN);
-        util.imprimirEnPantalla(trabajo1.calcularPrecioTotalA(), PRINTLN);
+        util.imprimirEnPantalla(trabajo1.calcularPrecioTotalRepMecanicas(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.getPrecioMaterial(), PRINTLN);
         
 
@@ -137,7 +137,7 @@ public class Mecanica {
             super(identificador, descripcion, horas, estado, costo, precioMaterial);
         }
 
-        public double calcularPrecioTotalA() {
+        public double calcularPrecioTotalRepMecanicas() {
             return calcularPrecioTotal() + (getPrecioMaterial() / 3);
         }
     }
@@ -147,7 +147,7 @@ public class Mecanica {
             super(identificador, descripcion, horas, estado, costo, precioMaterial);
         }
 
-        public double calcularPrecioTotalB() {
+        public double calcularPrecioTotalRepPintura() {
             return calcularPrecioTotal() + (getPrecioMaterial() / 5);
         }
     }
@@ -156,7 +156,7 @@ public class Mecanica {
         public Revision(int identificador, String descripcion, int horas, String estado, double costo, double precioMaterial) {
             super(identificador, descripcion, horas, estado, costo, precioMaterial);
         }
-        public double calcularPrecioTotalC() {
+        public double calcularPrecioTotalRevision() {
             return PRECIO_FIJO + PRECIO_FIJO_REVISION;
         }
     }
