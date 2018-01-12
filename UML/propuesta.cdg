@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="propuesta">
+  <ClassDiagramComponents>
+    <Class name="Trabajo" package="" visibility="public" xPosition="86.0" yPosition="30.0">
+      <Fields>
+        <Field name="identificador" type="int" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="horas" type="int" visibility="private"/>
+        <Field name="estado" type="String" visibility="private"/>
+        <Field name="costo" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getter" returnType="void" visibility="public"/>
+        <Method name="setter" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Reparaciones" package="" visibility="public" isStatic="true" xPosition="331.0" yPosition="58.0">
+      <Fields>
+        <Field name="precioMaterial" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="calcularPrecioTotal" returnType="double" visibility="public"/>
+        <Method name="getter" returnType="void" visibility="public"/>
+        <Method name="setter" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ReparacionesMecanicas" package="" visibility="public" isStatic="true" xPosition="104.0" yPosition="326.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="calcularPrecioTotalRepMecanicas" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ReparacionesChapasPintura" package="" visibility="public" xPosition="412.0" yPosition="326.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="calcularPrecioTotalRepPintura" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Revision" package="" visibility="public" xPosition="627.0" yPosition="153.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="calcularPrecioTotalRevision" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Utilidades" package="" visibility="public" xPosition="735.0" yPosition="330.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="imprimirEnPantalla" returnType="void" visibility="public">
+          <Argument type="Object" name="mensaje"/>
+          <Argument type="String" name="tipo"/>
+        </Method>
+        <Method name="generarNumero" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="Revision" target="Reparaciones"/>
+    <IsRelation name="is" source="ReparacionesMecanicas" target="Reparaciones"/>
+    <IsRelation name="is" source="ReparacionesChapasPintura" target="Reparaciones"/>
+    <IsRelation name="is" source="Reparaciones" target="Trabajo"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
