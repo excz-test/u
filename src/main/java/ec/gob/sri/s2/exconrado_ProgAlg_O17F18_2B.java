@@ -5,13 +5,15 @@
  */
 package ec.gob.sri.s2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  *
  * @author excz010715
  */
-public class Mecanica {
+public class exconrado_ProgAlg_O17F18_2B {
 
     private static String PRINT = "print";
     private static String PRINTLN = "println";
@@ -21,27 +23,36 @@ public class Mecanica {
     private static int DIAS_LIMITE_REPARACION = 14;
     private static int DIAS_LIMITE_PINTURA = 21;
     private static int DIAS_LIMITE_REVISION = 7;
+    static int identificador = 0;
 
     public static void main(String[] args) {
         Utilidades util = new Utilidades();
-        Trabajo trabajo = new ReparacionesMecanicas(0, "Reparación 1", 0, "ABIERTO", 0,util.generarNumero());
+        List<Trabajo> trabajos = new ArrayList<>();
+        util.imprimirEnPantalla("Registrar un trabajo: ", PRINTLN);
+        for (int i = 0; i < 10; i++) {
+            trabajos.add(new Revision(identificador++, "Revisión " + identificador, util.generarNumero(), Estado.INICIADO.toString(), 0, 0));
+            trabajos.add(new ReparacionesMecanicas(identificador++, "Reparación Mecánica " + identificador, util.generarNumero(), Estado.INICIADO.toString(), 0, 0));
+            trabajos.add(new ReparacionesChapasPintura(identificador++, "Reparación de Chapas y Pintura " + identificador, util.generarNumero(), Estado.INICIADO.toString(), 0, 0));
+        }
+        
+        for (Trabajo trabajo : trabajos) {
+            util.imprimirEnPantalla("Identificador: "+trabajo.getIdentificador()+" Descripción: "+trabajo.getDescripcion()+" Número de horas: "+trabajo.getHoras()+ " Estado del trabajo: "+trabajo.getEstado()+" Costo: "+trabajo.getCosto(), PRINTLN);
+        }
+        Trabajo trabajo = new ReparacionesMecanicas(0, "Reparación 1", 0, "ABIERTO", 0, util.generarNumero());
         /*System.out.println(trabajo.getIdentificador());
         System.out.println(trabajo.getDescripcion());
         System.out.println(trabajo.getHoras());
         System.out.println(trabajo.getEstado());
-        System.out.println(trabajo.getCosto());*/
+        System.out.println(trabajo.getCosto());
         util.imprimirEnPantalla(trabajo.getIdentificador(), PRINTLN);
         util.imprimirEnPantalla("--------------", PRINTLN);
-        ReparacionesMecanicas trabajo1=new ReparacionesMecanicas(1, "Reparaación 2", 20,"CERRADO", 100,50);
+        ReparacionesMecanicas trabajo1 = new ReparacionesMecanicas(1, "Reparaación 2", 20, "CERRADO", 100, 50);
         util.imprimirEnPantalla(trabajo1.getIdentificador(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.getDescripcion(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.getHoras(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.getEstado(), PRINTLN);
         util.imprimirEnPantalla(trabajo1.calcularPrecioTotalRepMecanicas(), PRINTLN);
-        util.imprimirEnPantalla(trabajo1.getPrecioMaterial(), PRINTLN);
-        
-
-        
+        util.imprimirEnPantalla(trabajo1.getPrecioMaterial(), PRINTLN);*/
 
     }
 
@@ -105,6 +116,7 @@ public class Mecanica {
             this.costo = costo;
         }
     }
+
     static class Reparaciones extends Trabajo {
 
         private double precioMaterial;
@@ -113,7 +125,7 @@ public class Mecanica {
             super(identificador, descripcion, horas, estado, costo);
         }
 
-        public Reparaciones(int identificador, String descripcion, int horas, String estado, double costo,double precioMaterial) {
+        public Reparaciones(int identificador, String descripcion, int horas, String estado, double costo, double precioMaterial) {
             super(identificador, descripcion, horas, estado, costo);
             this.precioMaterial = precioMaterial;
         }
@@ -131,6 +143,7 @@ public class Mecanica {
         }
 
     }
+
     static class ReparacionesMecanicas extends Reparaciones {
 
         public ReparacionesMecanicas(int identificador, String descripcion, int horas, String estado, double costo, double precioMaterial) {
@@ -141,6 +154,7 @@ public class Mecanica {
             return calcularPrecioTotal() + (getPrecioMaterial() / 3);
         }
     }
+
     static class ReparacionesChapasPintura extends Reparaciones {
 
         public ReparacionesChapasPintura(int identificador, String descripcion, int horas, String estado, double costo, double precioMaterial) {
@@ -151,15 +165,18 @@ public class Mecanica {
             return calcularPrecioTotal() + (getPrecioMaterial() / 5);
         }
     }
+
     static class Revision extends Reparaciones {
 
         public Revision(int identificador, String descripcion, int horas, String estado, double costo, double precioMaterial) {
             super(identificador, descripcion, horas, estado, costo, precioMaterial);
         }
+
         public double calcularPrecioTotalRevision() {
             return PRECIO_FIJO + PRECIO_FIJO_REVISION;
         }
     }
+
     /**
      * Clase que aporta con métodos transversales al sistema Mecánica
      */
@@ -182,7 +199,12 @@ public class Mecanica {
         }
 
         int generarNumero() {
-            return new Random().nextInt();
+            return new Random().nextInt(100);
         }
+
+    }
+
+    enum Estado {
+        INICIADO, DETENIDO, TERMINADO
     }
 }
