@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.gob.sri.s2;
 
 import java.io.FileNotFoundException;
@@ -14,8 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * @Descripcion La solución maneja los trabajos de un taller dividos en Reparaciones Mecanicas, pintura y revisiones
+ * Los datos son autogenerados, asì como las modificaciones. Al final se crea un csv externo que ademas se lo
+ * presenta en pantalla
  * @author excz010715
+ * @version 1.0 15/01/2018
  */
 public class exconrado_ProgAlg_O17F18_2B {
 
@@ -83,14 +81,9 @@ public class exconrado_ProgAlg_O17F18_2B {
             }
         }
 
-        /*for (Reparaciones trabajo1 : mecanicas) {
-            util.imprimirEnPantalla(trabajo1.getDescripcion() + "\t", PRINT);
-            util.imprimirEnPantalla(trabajo1.getHoras() + "\t", PRINT);
-            util.imprimirEnPantalla(trabajo1.getEstado() + "\t", PRINT);
-            util.imprimirEnPantalla(trabajo1.getCosto() + "\t", PRINT);
-            util.imprimirEnPantalla(trabajo1.getPrecioMaterial() + "\t", PRINTLN);
-            util.imprimirEnPantalla("-------------0-----------------", PRINTLN);
-        }*/
+        /**
+         * Guardar en Archivo
+         */
         String plazo=null;
         try {
             Formatter outArchivo = new Formatter("exconrado_DatosSalida.csv");
@@ -138,39 +131,12 @@ public class exconrado_ProgAlg_O17F18_2B {
             Logger.getLogger(exconrado_ProgAlg_O17F18_2B.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        /**
-         * Guardar en Archivo
-         */
-        /*
-        for (Trabajo trabajo : trabajos) {
-            util.imprimirEnPantalla("Identificador: "+trabajo.getIdentificador()+" Descripción: "+trabajo.getDescripcion()+" Número de horas: "+trabajo.getHoras()+ " Estado del trabajo: "+trabajo.getEstado()+" Costo: "+trabajo.getCosto(), PRINTLN);
-        }*/
-        // Trabajo trabajo = new ReparacionesMecanicas(0, "Reparación 1", 0, "ABIERTO", 0, util.generarNumero());
-        /*System.out.println(trabajo.getIdentificador());
-        System.out.println(trabajo.getDescripcion());
-        System.out.println(trabajo.getHoras());
-        System.out.println(trabajo.getEstado());
-        System.out.println(trabajo.getCosto());
-        util.imprimirEnPantalla(trabajo.getIdentificador(), PRINTLN);
-        util.imprimirEnPantalla("--------------", PRINTLN);*/
-        ReparacionesMecanicas trabajo1 = new ReparacionesMecanicas(1, "Reparaación 2", "", 20, "CERRADO", 100, 50);
-        util.imprimirEnPantalla(trabajo1.getIdentificador(), PRINTLN);
-        util.imprimirEnPantalla(trabajo1.getDescripcion(), PRINTLN);
-        util.imprimirEnPantalla(trabajo1.getHoras(), PRINTLN);
-        util.imprimirEnPantalla(trabajo1.getEstado(), PRINTLN);
-        util.imprimirEnPantalla(trabajo1.calcularPrecioTotalRepMecanicas(), PRINTLN);
-        util.imprimirEnPantalla(trabajo1.getPrecioMaterial(), PRINTLN);
-        util.imprimirEnPantalla("Modificar Estado y precio material: ", PRINT);
-        trabajo1.setPrecioMaterial(90);
-        trabajo1.setEstado(Estado.FINALIZADO.toString());
-        util.imprimirEnPantalla("Estado Cambiado", PRINT);
-        util.imprimirEnPantalla(trabajo1.getEstado(), PRINTLN);
-        util.imprimirEnPantalla(trabajo1.getPrecioMaterial(), PRINTLN);
-        util.imprimirEnPantalla("Modificando Finalizado \n---------", PRINT);
-        trabajo1.setPrecioMaterial(90);
+        
+        
 
     }
 
+    
     static class Trabajo {
 
         private int identificador;
