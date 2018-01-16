@@ -9,8 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @Descripcion La solución maneja los trabajos de un taller dividos en Reparaciones Mecanicas, pintura y revisiones
- * Los datos son autogenerados, asì como las modificaciones. Al final se crea un csv externo que ademas se lo
+ * @Descripcion La solución maneja los trabajos de un taller dividos en
+ * Reparaciones Mecanicas, pintura y revisiones Los datos son autogenerados, asì
+ * como las modificaciones. Al final se crea un csv externo que ademas se lo
  * presenta en pantalla
  * @author excz010715
  * @version 1.0 15/01/2018
@@ -84,7 +85,7 @@ public class exconrado_ProgAlg_O17F18_2B {
         /**
          * Guardar en Archivo
          */
-        String plazo=null;
+        String plazo = null;
         try {
             Formatter outArchivo = new Formatter("exconrado_DatosSalida.csv");
             outArchivo.format("Identificador;");
@@ -96,34 +97,34 @@ public class exconrado_ProgAlg_O17F18_2B {
             outArchivo.format("Costo Total;");
             outArchivo.format("Plazo;\n");
             for (ReparacionesMecanicas mecanica : mecanicas) {
-                int dias=mecanica.getHoras()/24;
-                if (dias>DIAS_LIMITE_REPARACION) {
-                    plazo="VENCIDO";
-                }else{
-                    plazo="A TIEMPO";
+                int dias = mecanica.getHoras() / 24;
+                if (dias > DIAS_LIMITE_REPARACION) {
+                    plazo = "VENCIDO";
+                } else {
+                    plazo = "A TIEMPO";
                 }
                 outArchivo.format("%d;%s;%s;%d;%s;%f;%f;%s\n", mecanica.getIdentificador(), mecanica.getDescripcion(),
-                mecanica.getTipo(),mecanica.getHoras(),mecanica.getEstado(),mecanica.getPrecioMaterial(),mecanica.getCosto(),plazo);                
+                        mecanica.getTipo(), mecanica.getHoras(), mecanica.getEstado(), mecanica.getPrecioMaterial(), mecanica.getCosto(), plazo);
             }
             for (ReparacionesChapasPintura pintura : pinturas) {
-                int dias=pintura.getHoras()/24;
-                if (dias>DIAS_LIMITE_PINTURA) {
-                    plazo="VENCIDO";
-                }else{
-                    plazo="A TIEMPO";
+                int dias = pintura.getHoras() / 24;
+                if (dias > DIAS_LIMITE_PINTURA) {
+                    plazo = "VENCIDO";
+                } else {
+                    plazo = "A TIEMPO";
                 }
                 outArchivo.format("%d;%s;%s;%d;%s;%f;%f;%s\n", pintura.getIdentificador(), pintura.getDescripcion(),
-                pintura.getTipo(),pintura.getHoras(),pintura.getEstado(),pintura.getPrecioMaterial(),pintura.getCosto(),plazo);
+                        pintura.getTipo(), pintura.getHoras(), pintura.getEstado(), pintura.getPrecioMaterial(), pintura.getCosto(), plazo);
             }
             for (Revision revision : revisiones) {
-                int dias=revision.getHoras()/24;
-                if (dias>DIAS_LIMITE_PINTURA) {
-                    plazo="VENCIDO";
-                }else{
-                    plazo="A TIEMPO";
+                int dias = revision.getHoras() / 24;
+                if (dias > DIAS_LIMITE_PINTURA) {
+                    plazo = "VENCIDO";
+                } else {
+                    plazo = "A TIEMPO";
                 }
                 outArchivo.format("%d;%s;%s;%d;%s;%f;%f;%s\n", revision.getIdentificador(), revision.getDescripcion(),
-                revision.getTipo(),revision.getHoras(),revision.getEstado(),revision.getPrecioMaterial(),revision.getCosto(),plazo);
+                        revision.getTipo(), revision.getHoras(), revision.getEstado(), revision.getPrecioMaterial(), revision.getCosto(), plazo);
             }
             outArchivo.close();
 
@@ -131,12 +132,11 @@ public class exconrado_ProgAlg_O17F18_2B {
             Logger.getLogger(exconrado_ProgAlg_O17F18_2B.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
-        
-
     }
 
-    
+    /**
+     * Clase Trabajo, encargada de registrar los elementos minimos de una orden
+     */
     static class Trabajo {
 
         private int identificador;
@@ -179,6 +179,11 @@ public class exconrado_ProgAlg_O17F18_2B {
             return descripcion;
         }
 
+        /**
+         * Registra la Descripcion si el estado es diferente de Finalizado
+         *
+         * @param descripcion
+         */
         public void setDescripcion(String descripcion) {
             if (getEstado().equals(Estado.FINALIZADO.toString())) {
                 System.out.println("No es posible actualizar, porque el trabajo ya finalizo");
@@ -191,6 +196,11 @@ public class exconrado_ProgAlg_O17F18_2B {
             return horas;
         }
 
+        /**
+         * Registra las horas si el estado es diferente de Finalizado
+         *
+         * @param horas
+         */
         public void setHoras(int horas) {
             if (getEstado().equals(Estado.FINALIZADO.toString())) {
                 System.out.println("No es posible actualizar, porque el trabajo ya finalizo");
@@ -216,6 +226,10 @@ public class exconrado_ProgAlg_O17F18_2B {
         }
     }
 
+    /**
+     * Reparaciones hereda de Trabajo y crea la forma de calcular el costo total
+     * general y añade sus propios atributos
+     */
     static class Reparaciones extends Trabajo {
 
         private double precioMaterial;
@@ -228,6 +242,11 @@ public class exconrado_ProgAlg_O17F18_2B {
         private Reparaciones() {
         }
 
+        /**
+         * Calculo de Precio Total General
+         *
+         * @return double precio Total
+         */
         public double calcularPrecioTotal() {
             return getHoras() * PRECIO_FIJO;
         }
@@ -236,6 +255,12 @@ public class exconrado_ProgAlg_O17F18_2B {
             return precioMaterial;
         }
 
+        /**
+         * Registra el precio de Material si el estado es diferente de
+         * Finalizado
+         *
+         * @param precioMaterial
+         */
         public void setPrecioMaterial(double precioMaterial) {
             if (getEstado().equals("FINALIZADO")) {
                 System.out.println("No es posible actualizar el Precio del Material, porque el trabajo ya finalizo");
@@ -247,34 +272,57 @@ public class exconrado_ProgAlg_O17F18_2B {
 
     }
 
+    /**
+     * Reparacion Mecanica hereda de Reparaciones y crea su propia forma de
+     * calcular el costo total
+     */
     static class ReparacionesMecanicas extends Reparaciones {
 
         public ReparacionesMecanicas(int identificador, String descripcion, String tipo, int horas, String estado, double costo, double precioMaterial) {
             super(identificador, descripcion, tipo, horas, estado, costo, precioMaterial);
         }
 
+        /**
+         * Calculo de precio Reparacion Mecanica
+         * @return double precio de Reparacion Mecanica
+         */
         public double calcularPrecioTotalRepMecanicas() {
             return calcularPrecioTotal() + (getPrecioMaterial() / 3);
         }
     }
 
+    /**
+     * Reparacion de chapas y pintura hereda de Reparaciones y crea su propia forma de
+     * calcular el costo total
+     */
     static class ReparacionesChapasPintura extends Reparaciones {
 
         public ReparacionesChapasPintura(int identificador, String descripcion, String tipo, int horas, String estado, double costo, double precioMaterial) {
             super(identificador, descripcion, tipo, horas, estado, costo, precioMaterial);
         }
 
+        /**
+         * Calculo de precio Reparacion Chapas y Pintura 
+         * @return double precio de Reparacion chapas y pintura
+         */
         public double calcularPrecioTotalRepPintura() {
             return calcularPrecioTotal() + (getPrecioMaterial() / 5);
         }
     }
 
+    /**
+     * Revision de Reparaciones y crea su propia forma de calcular precio
+     */
     static class Revision extends Reparaciones {
 
         public Revision(int identificador, String descripcion, String tipo, int horas, String estado, double costo, double precioMaterial) {
             super(identificador, descripcion, tipo, horas, estado, costo, precioMaterial);
         }
 
+        /**
+         * Calcula el costo por revisión
+         * @return double calculo precio revision
+         */
         public double calcularPrecioTotalRevision() {
             return PRECIO_FIJO + PRECIO_FIJO_REVISION;
         }
@@ -285,6 +333,11 @@ public class exconrado_ProgAlg_O17F18_2B {
      */
     public static class Utilidades {
 
+        /**
+         * Utilidad para imprimir en pantalla
+         * @param mensaje
+         * @param tipo 
+         */
         void imprimirEnPantalla(Object mensaje, String tipo) {
             switch (tipo) {
                 case "print":
@@ -301,6 +354,10 @@ public class exconrado_ProgAlg_O17F18_2B {
             }
         }
 
+        /**
+         * Crea un numero entero aleatorio
+         * @return int
+         */
         int generarNumero() {
             return new Random().nextInt(1000);
         }
