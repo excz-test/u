@@ -12,3 +12,7 @@ https://www.youtube.com/watch?v=h0JbimQ4RRM
 http://marketingdigitalparanoexpertos.com/el-sistema-revelado?utm_content=6475556&utm_medium=Email&utm_name=Id&utm_source=Actionetics
 
 https://www.rankacademy.global/replaywebinarfacebook
+
+
+Video:
+14 de feb: https://youtu.be/RL6vpVvYnsA
