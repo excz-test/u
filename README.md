@@ -17,3 +17,5 @@ https://www.rankacademy.global/replaywebinarfacebook
 
 Video:
 14 de feb: https://youtu.be/RL6vpVvYnsA
+
+https://es.calameo.com/read/0050577490f2b4134d35d
