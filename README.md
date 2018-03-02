@@ -19,3 +19,4 @@ Video:
 14 de feb: https://youtu.be/RL6vpVvYnsA
 
 https://es.calameo.com/read/0050577490f2b4134d35d
+link rankacademy: http://app.getresponse.com/click.html?x=a62b&lc=6BB3m&mc=JE&s=fGi24C&u=SltED&y=5&
